@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CameraApp</title>
+</head>
+<body>
+
+<div id="result"></div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+<script>
+    let url = "http://localhost:8080/cameras";
+    let result = document.getElementById('result');
+
+    $(document).ready(function(){
+        $.get(url,
+            function(response, status){
+
+                if(status === "success"){
+                    let r = "";
+
+                    response.forEach(function(element) {
+                        r += element.id + " lens: " + element.lens + "<br>";
+                    }, this);{
+
+                        result.innerHTML = r;
+                    }
+                }},"json");
+    })
+
+
+</script>
+</body>
+</html>
